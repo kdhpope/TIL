@@ -46,7 +46,7 @@ systemctl disable firewalld
 
 
 
-
+### 설치
 
 1. 필요 파일
    1. java(필수)
@@ -72,3 +72,16 @@ systemctl disable firewalld
 10. 실행
     1. start-all.sh
     2. stop-all.sh(절대 그냥 끄지 마라)
+
+
+
+
+
+### 명령어
+
+대부분은 리눅스와 비슷함
+
+형식 : hadoop dfs -(명령어)
+
+ex) hadoop dfs -mkdir /test
+
