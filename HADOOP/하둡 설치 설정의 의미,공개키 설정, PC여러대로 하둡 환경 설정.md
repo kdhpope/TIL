@@ -18,11 +18,23 @@ dfs.data.dir : data node directory
 
 dfs.webhdfs.enabled : 웹으로 접근 가능할 것인가
 
+dfs.secondary.http.address : 외부에서 볼때(second namenode가 어디에 있는가)
+
+mastser : 내부에서 기능할 때 second namenode가 어디에 있는가
+
+slave : 기능하는 data node, task node가 어디인가
+
 ##### mapred-site.xml
 
 job tracker : 분석처리를 명령 받아서 task tracker가 실행되게 함
 
 task tracker의 결과를 리턴해줌
+
+
+
+
+
+
 
 
 
