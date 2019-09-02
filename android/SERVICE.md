@@ -12,34 +12,107 @@ FragmentCallback
 
 
 
+서비스의 start와 bind
+
+start는 시작만 하고 이후의 작동은 액티비티가 컨트롤 할 수 없지만, bind(ibind)에서는 계속 통신이 가능함.
+
+bind는 start가 아니라서 onCreate, onStartCommand가 작동하지 않는다. 
+
+
+
+Activity
+
+```java
+//새로운 서비스를 만들고, bind시킴
+//MyService는 새로운 service페이지를 만들면 새로운 service가 새로운 객체로 만들어지고, 그 객체를 선언한다. 
+ServiceConnection con = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MyService.myBinder mb = (MyService.myBinder)iBinder;
+            ms = mb.getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+
+        }
+    };
+	//service로부터 받는 데이터를 받는 함수.
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
+
+@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+		//해당하는 서비스를 만듦
+        Intent intent = new Intent(getApplicationContext(),MyService.class);
+        //service bind
+        bindService(intent,con, Context.BIND_AUTO_CREATE);
+    }
+```
+
+
+
+Service
+
+
+
 서비스의 코드
 
 ```java
+package com.example.p360;
+
+import android.app.Service;
+import android.content.Intent;
+import android.os.Binder;
+import android.os.IBinder;
+import android.util.Log;
+
 public class MyService extends Service {
+    Intent intentkk;
     public MyService() {
-    }
-    boolean jasj = true;
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        
-    }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
+    boolean bt1action = false;
+    boolean bt2action = false;
 
-    @Override
+    class myBinder extends Binder{
+        public MyService getService(){
+            return MyService.this;
+        }
+    }
+    IBinder iBinder = new myBinder();
+
+    @Override  //service가 실행되면 가장 먼저 시작되는 함수
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("start","on start");
         return super.onStartCommand(intent, flags, startId);
     }
 
+    public void bt(){
+        Log.d("click","bt");
+        Runnable run = new Runnable() {
+       		@Override
+            public void run() {
+                    
+            }
+       	};
+            Thread thread = new Thread(run);
+            thread.start();
+        }
+    }
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        intentkk = new Intent(getApplicationContext(),MainActivity.class);
+        intentkk.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                Intent.FLAG_ACTIVITY_SINGLE_TOP |
+                Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
+        return  iBinder;
     }
 }
 
