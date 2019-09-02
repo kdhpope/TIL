@@ -202,6 +202,14 @@ public class SmsReceiver extends BroadcastReceiver {
 
 ### Permission에 관하여
 
+
+
+모든 Permission에 관하여 아래의 항목을 수행해야 하는 것은 아니다.
+
+'위험 권한'에 대하여만 하면 됨
+
+
+
 manifest
 
 ```xml
@@ -226,6 +234,16 @@ public class MainActivity extends AppCompatActivity {
         
         ActivityCompat.requestPermissions(this,Permissions,101);//실제로 물어보는 코드
 
+    }
+    
+    public void ActionRequiredPermission(){
+        //권한이 필요한 액션이 실행될 때, 권한이 있는지 묻고 실행한다. 
+        //지금 예에서는 phone call
+        int permission = PermissionChecker.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+        if(permission ==PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:010-1213-1415"));
+            startActivity(intent);
+        }
     }
 }
 ```
