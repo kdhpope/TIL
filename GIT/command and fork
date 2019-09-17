@@ -1,0 +1,71 @@
+## Git 기초
+
+Git 기초
+
+커맨드
+
+
+
+## 기본 커맨드
+
+git init: git으로 프로젝트 관리 시작한다.(초기화)
+
+-> .git 폴더가 생김(git폴더를 지우면 관리가 없어짐)
+
+
+
+- git log : 새로 commit된 파일들의 정보가 나옴
+
+- git checkout [commitHash] : 특정 commit을 확인하기
+
+- git restore [file] : 마지막에 commit한 시점으로 파일을 되돌림
+
+- git clone [repostory_address] [project_name] : 원격 저장소 코드 복제
+
+(클론 받을 때는 깃으로 관리되는 페이지에서 받으면 안됨)
+
+
+
+- git diff : 깃의 상세 변경 사항
+
+
+
+리모트 작업
+
+- git remote {,-v}: 연결된 원격 저장소의 정보를 알려줌{상세하게}
+
+- git remote add [repostory_name]] [repostory_address] : 저장소 추가
+
+-  git pull [repostory_name] [local_proejct_name] : github의 데이터를 가져오는 것
+
+- git push [repostory_name] [branch_name] : 
+
+
+
+SCM(VCS)
+
+souce code management
+
+version control system
+
+
+
+협업의 원칙
+
+1. 팀장에 의한 독재
+
+단점 : 동시 작업이 불가능함
+
+​       팀장이 collerbrater에 추가하지 않으면 commit이 안됨
+
+
+
+
+
+### Fork
+
+1. Fork project -> 내 깃허브에 해당 프로젝트가 복사됨
+
+2. 내가 프로젝트를 받아서 수정한 다음에 push를 함 -> 내 git의 prject가 업데이트 됨
+
+3. pull request -> 원래 프로젝트 주인에게 프로젝트 합치는 요청을 보냄

@@ -1,0 +1,25 @@
+git은 master와 branch를 독립된 공간으로 인식한다.
+
+1. 'git branch' : 현재 branch의 상태(어떤 branch가 있는지, 내가 어떤 branch인지)를 확인
+2. git branch [branch_name] : branch_name으로 branch를 새로 만든다.
+3. git switch(git checkout) [branch] : 작업 환경을 branch로 이동시킨다.
+4. git merge [target_branch] : target_branch와 현재 branch를 합친다.(현재 branch가 바뀌고 target_branch는 그대로임)
+5. git branch -d [branch_name] : 해당 branch를 삭제함
+6. git reset --hard HEAD : 
+7. git rm --cahsed	
+
+
+merge 시나리오
+1. fast forward : 브랜치를 새로 만들고(new) 바꾸었을 때, 기존의 브랜치(origin)가 바뀌지 않고 merge를 하면 전체를 하나의 줄기로 본다.
+2. auto merge(merge without conflict) : 두 브랜치 모두 내용이 바뀌었지만, 바뀐 파일이 겹치지 않을 경우 
+3. merge with confilct 
+
+
+contributor는 
+해당 git project를 clone 받고($ git clone github_address) 
+새로운 브랜치를 만들어서 ($ git switch -c slave)
+브랜치에서 수정한 다음에
+add, commit를 한 다음에
+github에 push를 branch 이름으로 한다.($ git push origin slave)
+(git push account branch)
+github에서 contributor는 pull request를 통해 merge를 요청할 수 있음
