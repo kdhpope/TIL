@@ -77,6 +77,15 @@ Thread t1 = new Thread(tg1, new Runnable() {
 
 
 
+main Thread가 끝날때 subThread도 끝나게 하는 법
+
+```java
+Thread t2 = new Thread(new MyThread("T2"));
+t2.setDaemon(true);
+```
+
+
+
 
 
 지금까지 웹(표면에 보여주는 것, 통신 제외)은 하나의 thread였다.
@@ -84,3 +93,28 @@ Thread t1 = new Thread(tg1, new Runnable() {
 html5에선 웹도 multi thread를 지원함
 
 화면은 완성시켜 놓고 그 외의 기능은 나중에 추가(thread를 이용해서?)
+
+
+
+Thread를 개발자가 의도적으로 없앨수 없음.
+
+suspend, resume, stop이 deprecated됨
+
+flag를 둬서 run을 중지시키거나,
+
+interrupt로 중지시켜야 함
+
+
+
+#### critical section 해결
+
+1. syncronize
+
+동기화, 하나의 객체에서 실행중이면 다른 객체에서 실행이 안됨
+
+```java
+public synchronized void withdraw ~~~
+```
+
+
+
