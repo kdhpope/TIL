@@ -1,0 +1,98 @@
+list to string
+
+"구분자".join(list_name)
+
+
+
+rest API
+
+http기반으로 필요한 자원에 접근하는 방식을 정해놓은 아키텍쳐?
+
+
+
+GET, POST, PUT, DELETE 는 CRUD와 같다?
+
+(create - post, read - get, update - put or patch, destory - delete)
+
+
+
+MVVM vs MVC
+
+
+
+Django
+
+프로젝트 생성
+
+```python
+django-admin startproject Prject_name
+```
+
+실행 - 프로젝트 폴더에서
+
+```python
+python manage.py runserver
+```
+
+
+
+setting - installed_apps : 웹 페이지 등록? 하나하나가 app으로 작동을 한다?
+
+```python
+INSTALLED_APPS = [
+    'lotto', ##lotto를 등록, 이하는 디폴트로 입력되어 있음
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+```
+
+
+
+urls.py에 app의 view를 등록
+
+```python
+from lotto import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('lotto/',views.lotto),
+    path('lotto/winning',views.winning)
+]
+
+```
+
+
+
+
+
+
+
+내가 "www.naver.com"에 접속했을 때 발생하는 모든 과정을 설명하시오!
+
+1. 클라이언트에서 url 요청 -> DNS에서 ip로 변환
+2. request -> route -> controller -> view -> response -> client로 보냄
+3. client에서 DOM tree parsing, render만들고 뿌린다.
+
+
+
+- 프로젝트 만들기
+  - 프로젝트 vs 어플리케이션(app)
+  - MVC -> MVT(model, view, template
+- 시작하기
+  - django-admin startproject myproject
+  - cd myproject
+  - python manage.py startapp appname
+- django에서 app단위는 하나의 모델에 대한 모든 내용이 담겨 있다
+  - 예를 들어 게시판에서, post라는 app을 만들어서 그 안에서 모든 내용을 처리한다.
+- app을 만드는 순서
+  - python manage.py startapp appname
+  - settings.py의 INSTALLED_APPS에 만든 app을 추가
+  - 만든 app폴더에 가서 views.py 파일에 함수 등록
+  - 해당 함수의 결과를 뿌려줄 template 선언
+  - 선언된 templage에 해당하는 파일 만들기
+  - urls.py에 등록된 함수 연결
+
